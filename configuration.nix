@@ -19,7 +19,6 @@ in
     ./hardware/hardware-configuration.nix
     ./modules/network.nix
     ./users/suwara/profile.nix
-    ./users/suwara/cfg/git.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

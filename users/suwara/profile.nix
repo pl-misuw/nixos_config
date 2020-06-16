@@ -4,6 +4,10 @@ let
   secrets = import ../../secrets/secrets.nix {};
 in
 {
+  imports = [ 
+    ./cfg/git.nix
+  ];
+
   # Environment thingies
   environment.systemPackages = with pkgs; [
     exa
@@ -48,28 +52,6 @@ in
     createHome = true;
     useDefaultShell = false;
     hashedPassword = secrets.users.suwara.hashedPassword;
-  };
-
-  home-manager.users.suwara = {
-    home.packages = with pkgs; [
-      git-crypt
-      kubectl
-      jq
-      binutils
-      gcc
-      openssl
-      wget
-      vim
-      curl
-      termite
-      git
-      zsh
-    ];
-    home.sessionVariables = {
-      NIXOS_CONFIG = /home/suwara/projects/nixos-config;
-      EDITOR = "vim";
-    };
-
   };
 
   nix.trustedUsers = [ "root" "suwara" ];
