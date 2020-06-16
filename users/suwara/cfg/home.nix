@@ -18,6 +18,7 @@ in
       termite
       git
       zsh
+      oh-my-zsh
     ];
     home.sessionVariables = {
       NIXOS_CONFIG = /home/suwara/projects/nixos-config;
@@ -32,6 +33,20 @@ in
             editor = "vim";
             };
         };
+    };
+    programs.zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+
+      shellAliases = {
+        rebuild-nix = "sudo nixos-rebuild -I nixos-config=/home/suwara/_GIT/nixos/configuration.nix switch";
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [];
+        theme = "agnoster";
+      };
     };
   };
 }

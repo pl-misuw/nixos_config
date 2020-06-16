@@ -5,7 +5,7 @@ let
 in
 {
   imports = [ 
-    ./cfg/git.nix
+    ./cfg/home.nix
   ];
 
   # Environment thingies
