@@ -4,12 +4,36 @@ let
   secrets = import ../../secrets/secrets.nix {};
 in
 {
+  # Environment thingies
   environment.systemPackages = with pkgs; [
     exa
     fd
     ripgrep
   ];
+  
+    # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.sessionVariables.TERMINAL = [ "termite" ];
 
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+  services.openssh.permitRootLogin = "no";
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+  # services.xserver.layout = "us";
+  # services.xserver.windowManager.i3.enable = true;
+  # services.xserver.xkbOptions = "eurosign:e";
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.suwara = {
     description = "Michal Suwara";
     uid = 6666;
@@ -33,23 +57,19 @@ in
       jq
       binutils
       gcc
-      gnumake
       openssl
+      wget
+      vim
+      curl
+      termite
+      git
+      zsh
     ];
     home.sessionVariables = {
       NIXOS_CONFIG = /home/suwara/projects/nixos-config;
       EDITOR = "vim";
     };
-    programs.git = {
-      enable = true;
-      userEmail = secrets.users.suwara.git.email;
-      userName = "Michal Suwara";
-      extraConfig = {
-        core = {
-          editor = "vim";
-        };
-      };
-    };
+
   };
 
   nix.trustedUsers = [ "root" "suwara" ];
