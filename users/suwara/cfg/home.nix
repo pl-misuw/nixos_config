@@ -7,6 +7,8 @@ in
   home-manager.users.suwara = {
     home.packages = with pkgs; [
       git-crypt
+      docker
+      docker-compose
       kubectl
       jq
       binutils
@@ -19,7 +21,18 @@ in
       git
       zsh
       oh-my-zsh
+      bazel
+      vscode
     ];
+    # home.file = {
+    #   ".config" = {
+    #     source = ./dotfiles/.config;
+    #     recursive = true;
+    #   };
+    #   ".dmenurc".source = ./dotfiles/.dmenurc;
+    #   ".extend.Xresources".source = ./dotfiles/.extend.Xresources;
+    #   ".Xresources".source = ./dotfiles/.Xresources;
+    # };
     home.sessionVariables = {
       NIXOS_CONFIG = /home/suwara/projects/nixos-config;
       EDITOR = "vim";
