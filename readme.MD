@@ -6,8 +6,8 @@ This is personal nixos configuration, in basic form it only consists of hardware
 
 - [x] Basic setup
 - [x] Home manager
-- [ ] Docker
-- [ ] K8S
+- [x] Docker
+- [x] K8S
 - [ ] VPN server setup
 - [ ] NAS for home
 - [ ] Cleanup
