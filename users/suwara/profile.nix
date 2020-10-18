@@ -10,7 +10,8 @@ in
     #../../modules/k8s_no_Gondek.nix
     #../../modules/docker.nix
   ];
-
+  #Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
   # Environment thingies
   environment.systemPackages = with pkgs; [
     exa
@@ -19,11 +20,7 @@ in
   ];
   
     # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    #Set unfree packages to be allowed
-    nixpkgs.config.allowUnfree = true;
-
-    #Set default terminal to termite
+  # $ nix search wget
   environment.sessionVariables.TERMINAL = [ "termite" ];
 
   # List services that you want to enable:
@@ -39,26 +36,31 @@ in
    networking.firewall.enable = false;
 
   # Enable the X11 windowing system.
-   services.xserver.enable = true;
-   services.xserver.layout = "pl";
-   services.xserver.windowManager.i3 = {
-     enable = true;
-     package = pkgs.i3;
-     extraPackages = with pkgs; [
-       dmenu
-       i3status-rust
-       i3lock-fancy
-       i3blocks
-       rofi
-       polybar
-     ];
-   };
-   services.xserver.xkbOptions = "eurosign:e";
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    exportConfiguration = true;
+    xkbOptions = "eurosign:e";
+    desktopManager = {
+      plasma5.enable = true;
+      xterm.enable = false;
+    };
+    windowManager.i3 = {
+      enable = true;
+      configFile = "/.config/i3/config";
+      package = pkgs.i3-gaps;
+      extraPackages = with pkgs; [
+        i3lock #default i3 screen locker
+        i3status #if you are planning on using i3blocks over i3status
+      ];
+    };
+  };
 
   # Enable xrdp
   services.xrdp.enable = true;
+  #services.xrdp.defaultWindowManager = "${pkgs.i3-gaps}/bin/i3";
   services.xrdp.defaultWindowManager = "${pkgs.icewm}/bin/icewm";
-  
+    
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.suwara = {
     description = "Michal Suwara";

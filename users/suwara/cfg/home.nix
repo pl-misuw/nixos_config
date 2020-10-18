@@ -6,10 +6,16 @@ in
 {
   home-manager.users.suwara = {
     home.packages = with pkgs; [
+      #Work
       git-crypt
       docker
       docker-compose
       kubectl
+      git
+      bazel
+      helm
+
+      #Sys
       jq
       binutils
       gcc
@@ -17,22 +23,28 @@ in
       wget
       vim
       curl
+      psmisc
+
+      #Btyfy
       termite
-      git
       zsh
       oh-my-zsh
-      bazel
+      polybar
+
+      #Utilities
+      firefox
       vscode
+
     ];
-    # home.file = {
-    #   ".config" = {
-    #     source = ./dotfiles/.config;
-    #     recursive = true;
-    #   };
-    #   ".dmenurc".source = ./dotfiles/.dmenurc;
-    #   ".extend.Xresources".source = ./dotfiles/.extend.Xresources;
-    #   ".Xresources".source = ./dotfiles/.Xresources;
-    # };
+    home.file = {
+      ".config" = {
+        source = ./dotfiles/.config;
+        recursive = true;
+      };
+      ".dmenurc".source = ./dotfiles/.dmenurc;
+      ".extend.Xresources".source = ./dotfiles/.extend.Xresources;
+      ".Xresources".source = ./dotfiles/.Xresources;
+    };
     home.sessionVariables = {
       NIXOS_CONFIG = /home/suwara/projects/nixos-config;
       EDITOR = "vim";
@@ -53,6 +65,7 @@ in
 
       shellAliases = {
         rebuild-nix = "sudo nixos-rebuild -I nixos-config=/home/suwara/_GIT/nixos/configuration.nix switch";
+        nix-search = "nix-env -qaP";
       };
 
       oh-my-zsh = {
