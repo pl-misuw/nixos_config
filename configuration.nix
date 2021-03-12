@@ -6,7 +6,7 @@
 
 let
   secrets = import ./secrets/secrets.nix {};
-  homeManager = fetchTarball https://github.com/rycee/home-manager/archive/release-20.03.tar.gz;
+  homeManager = fetchTarball https://github.com/rycee/home-manager/archive/release-20.09.tar.gz;
 in
 
 {
@@ -42,6 +42,7 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.09"; # Did you read the comment?
-
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true;
 }
 

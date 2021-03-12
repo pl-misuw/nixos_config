@@ -13,7 +13,7 @@ in
       kubectl
       git
       bazel
-      helm
+      kubernetes-helm
 
       #Sys
       jq
@@ -34,7 +34,8 @@ in
       #Utilities
       firefox
       vscode
-
+      pwgen
+      openvpn
     ];
     home.file = {
       ".config" = {
