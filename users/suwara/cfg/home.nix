@@ -36,6 +36,9 @@ in
       vscode
       pwgen
       openvpn
+      git-lfs
+      discord
+      slack
     ];
     home.file = {
       ".config" = {
@@ -47,7 +50,7 @@ in
       ".Xresources".source = ./dotfiles/.Xresources;
     };
     home.sessionVariables = {
-      NIXOS_CONFIG = /home/suwara/projects/nixos-config;
+      NIXOS_CONFIG = /home/suwara/_GIT/nixos/configuration.nix;
       EDITOR = "vim";
     };
     programs.git = {
