@@ -6,7 +6,7 @@
 
 let
   secrets = import ./secrets/secrets.nix {};
-  homeManager = fetchTarball https://github.com/rycee/home-manager/archive/release-20.09.tar.gz;
+  homeManager = fetchTarball https://github.com/rycee/home-manager/archive/release-21.05.tar.gz;
 in
 
 {
@@ -16,27 +16,28 @@ in
   
   imports = [ # Include the results of the hardware scan.
     ''${homeManager}/nixos''
-    ./hardware/dell-configuration.nix
+    ./hardware/lenovo-configuration.nix
     ./users/suwara/profile.nix
   ];
-
-  networking.hostName = "suwarver"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.eno1.useDHCP = true;
-  networking.interfaces.eno2.useDHCP = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "workLifeBalance"; # Define your hostname.
+  networking.wireless = {
+    enable = true;
+    interfaces = [ "wlp0s20f3" ];
+    userControlled.enable = true;
+    userControlled.group = "wheel";
+  };
+
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "pl-PL.UTF-8";
@@ -44,6 +45,32 @@ in
     font = "Lat2-Terminus16";
     keyMap = "pl";
   };
+
+  #Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Enable the X11 windowing system.
+  # services.xserver = {
+  #   enable = true;
+
+    # desktopManager = {
+      # default = "xfce";
+    #   xterm.enable = false;
+    #   xfce = {
+    #    enable = true;
+    #    noDesktop = true;
+    #    enableXfwm = false;
+    #   };
+    # };
+  #  
+    # displayManager = {
+    #     defaultSession = "xfce+i3";
+    # };
+    # monitorSection = ''
+    #   DisplaySize 406 228
+    # '';
+  # };
+
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
@@ -54,8 +81,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "21.05"; # Did you read the comment?
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
 }
-

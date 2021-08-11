@@ -5,13 +5,11 @@ let
 in
 {
   imports = [ 
-    ./cfg/home.nix
-    ../../modules/k8s.nix
+    ./home.nix
+    #../../modules/k8s.nix
     #../../modules/k8s_no_Gondek.nix
     #../../modules/docker.nix
   ];
-  #Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
   # Environment thingies
   environment.systemPackages = with pkgs; [
     exa
@@ -33,28 +31,7 @@ in
   # networking.firewall.allowedTCPPorts = [ 3389 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-   networking.firewall.enable = false;
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    exportConfiguration = true;
-    xkbOptions = "eurosign:e";
-    desktopManager = {
-      plasma5.enable = true;
-      xterm.enable = false;
-    };
-    windowManager.i3 = {
-      enable = true;
-      configFile = "/.config/i3/config";
-      package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        i3lock #default i3 screen locker
-        i3status #if you are planning on using i3blocks over i3status
-      ];
-    };
-  };
+  networking.firewall.enable = false;
 
   # Enable xrdp
   services.xrdp.enable = true;
