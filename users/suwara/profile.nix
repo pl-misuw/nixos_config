@@ -19,7 +19,7 @@ in
   
     # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.sessionVariables.TERMINAL = [ "termite" ];
+  environment.sessionVariables.TERMINAL = [ "alacritty" ];
 
   # List services that you want to enable:
 
@@ -37,7 +37,7 @@ in
   services.xrdp.enable = true;
   #services.xrdp.defaultWindowManager = "${pkgs.i3-gaps}/bin/i3";
   services.xrdp.defaultWindowManager = "${pkgs.icewm}/bin/icewm";
-    
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.suwara = {
     description = "Michal Suwara";
@@ -49,7 +49,7 @@ in
       "docker"
     ];
     home = "/home/suwara";
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
     createHome = true;
     useDefaultShell = false;
     hashedPassword = secrets.users.suwara.hashedPassword;

@@ -1,10 +1,15 @@
 { pkgs, ... }:
 
+let
+  rofiBlocks = pkgs.callPackage ./rofi-blocks { };
+in
+
 {
 
   home-manager.users.suwara = {
   programs.rofi = {
     enable = true;
+    plugins = [ rofiBlocks ];
 
     theme = builtins.toString (pkgs.writeText "rofi-theme" ''
       /**

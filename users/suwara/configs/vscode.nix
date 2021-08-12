@@ -112,7 +112,7 @@ in
 
     userSettings = {
       update.mode = "none";
-      window.zoomLevel = 0;
+      window.zoomLevel = 1;
 
       terminal.integrated.shell.linux = "${pkgs.zsh}/bin/zsh";
 

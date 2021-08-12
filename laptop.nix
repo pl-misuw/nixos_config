@@ -6,7 +6,7 @@
 
 let
   secrets = import ./secrets/secrets.nix {};
-  homeManager = fetchTarball https://github.com/rycee/home-manager/archive/release-21.05.tar.gz;
+  homeManager = fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 in
 
 {
@@ -23,18 +23,27 @@ in
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  
   networking.hostName = "workLifeBalance"; # Define your hostname.
   networking.wireless = {
-    enable = true;
+    # enable = true;
+    iwd.enable = true;
     interfaces = [ "wlp0s20f3" ];
     userControlled.enable = true;
     userControlled.group = "wheel";
+  };
+  networking.networkmanager = {
+    enable = true;
+    wifi.backend = "iwd";
   };
 
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  environment.variables = {
+    LC_ALL = "C";
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -50,26 +59,19 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # Enable the X11 windowing system.
-  # services.xserver = {
-  #   enable = true;
+  services.xserver = {
+    enable = true;
+    dpi = 110;
 
-    # desktopManager = {
-      # default = "xfce";
-    #   xterm.enable = false;
-    #   xfce = {
-    #    enable = true;
-    #    noDesktop = true;
-    #    enableXfwm = false;
-    #   };
-    # };
-  #  
-    # displayManager = {
-    #     defaultSession = "xfce+i3";
-    # };
-    # monitorSection = ''
-    #   DisplaySize 406 228
-    # '';
-  # };
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+       enable = true;
+       noDesktop = true;
+       enableXfwm = false;
+      };
+    };
+  };
 
 
   # Set your time zone.

@@ -11,19 +11,19 @@ let
   fg = "#FFFFFF";
 
   # Colored
-  primary = "#91ddff";
+  primary = "#3c1742";
 
   # Dark
-  secondary = "#141228";
+  secondary = "#561643";
 
   # Colored (light)
-  tertiary = "#65b2ff";
+  tertiary = "#d4adcf";
 
   # white
-  quaternary = "#ecf0f1";
+  quaternary = "#f3ffb9";
 
   # middle gray
-  quinternary = "#20203d";
+  quinternary = "#a2999e";
 
   # Red
   urgency = "#e74c3c";
@@ -54,7 +54,7 @@ in {
         fixed-center = true;
 
         width = "100%";
-        height = 19;
+        height = 25;
         offset-x = "1%";
 
         scroll-up = "i3wm-wsnext";
@@ -65,12 +65,12 @@ in {
 
         radius = 0;
 
-        font-0 = "FuraCode Nerd Font:size=12;3";
-        font-1 = "FuraCode Nerd Font:style=Bold:size=12;3";
+        font-0 = "FuraCode Nerd Font:size=16;4";
+        font-1 = "FuraCode Nerd Font:style=Bold:size=16;4";
 
         modules-left = "distro-icon dulS ddrT i3 dulT";
         modules-center = "title";
-        modules-right = "durT audio ddlT date";
+        modules-right = "durT audio ddlT durP network ddlP date";
 
         locale = "en_US.UTF-8";
       };
@@ -80,7 +80,7 @@ in {
         fixed-center = true;
 
         width = "100%";
-        height = 19;
+        height = 25;
 
         offset-x = "1%";
 
@@ -92,15 +92,15 @@ in {
         tray-position = "left";
         tray-detached = false;
         tray-maxsize = 15;
-        tray-background = primary;
-        tray-offset-x = -19;
+        tray-background = secondary;
+        tray-offset-x = -39;
         tray-offset-y = 0;
         tray-padding = 5;
         tray-scale = 1;
         padding = 0;
 
-        font-0 = "FuraCode Nerd Font:size=12;3";
-        font-1 = "FuraCode Nerd Font:style=Bold:size=12;3";
+        font-0 = "FuraCode Nerd Font:size=16;4";
+        font-1 = "FuraCode Nerd Font:style=Bold:size=16;4";
 
         modules-left = "powermenu ddlS";
 
@@ -171,12 +171,12 @@ in {
 
         label-full = " 100%";
         format-full-padding = 1;
-        format-full-foreground = secondary;
+        format-full-foreground = fg;
         format-full-background = primary;
 
         format-charging = " <animation-charging> <label-charging>";
         format-charging-padding = 1;
-        format-charging-foreground = secondary;
+        format-charging-foreground = fg;
         format-charging-background = primary;
         label-charging = "%percentage%% +%consumption%W";
         animation-charging-0 = "";
@@ -188,7 +188,7 @@ in {
 
         format-discharging = "<ramp-capacity> <label-discharging>";
         format-discharging-padding = 1;
-        format-discharging-foreground = secondary;
+        format-discharging-foreground = fg;
         format-discharging-background = primary;
         label-discharging = "%percentage%% -%consumption%W";
         ramp-capacity-0 = "";
@@ -290,29 +290,29 @@ in {
 
       "module/network" = {
         type = "internal/network";
-        interface = "enp3s0";
+        interface = "wlan0";
 
         interval = "1.0";
 
         accumulate-stats = true;
         unknown-as-up = true;
-
+        
         format-connected = "<label-connected>";
-        format-connected-background = mf;
-        format-connected-underline = bg;
-        format-connected-overline = bg;
+        format-connected-background = primary;
+        format-connected-underline = fg;
+        format-connected-overline = fg;
         format-connected-padding = 2;
         format-connected-margin = 0;
 
         format-disconnected = "<label-disconnected>";
-        format-disconnected-background = mf;
-        format-disconnected-underline = bg;
-        format-disconnected-overline = bg;
+        format-disconnected-background = primary;
+        format-disconnected-underline = fg;
+        format-disconnected-overline = fg;
         format-disconnected-padding = 2;
         format-disconnected-margin = 0;
 
-        label-connected = "D %downspeed:2% | U %upspeed:2%";
-        label-disconnected = "DISCONNECTED";
+        label-connected = " %downspeed:2% %upspeed:2%";
+        label-disconnected = "睊";
       };
 
       "module/temperature" = {
@@ -353,7 +353,7 @@ in {
 
         label-open = "";
         label-close = "";
-        label-separator = "  ";
+        label-separator = "";
 
         menu-0-0 = " Suspend";
         menu-0-0-exec = "systemctl suspend";

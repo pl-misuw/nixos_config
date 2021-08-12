@@ -2,9 +2,10 @@
 { pkgs, ... }:
 
 {
+  home-manager.users.suwara = {
   services.picom = {
     enable = true;
-    package = pkgs.callPackage ../packages/compton-unstable.nix { };
+    package = pkgs.callPackage ../../../pkgs/compton-unstable.nix { };
     experimentalBackends = true;
 
     blur = true;
@@ -21,7 +22,7 @@
     noDNDShadow = true;
 
     activeOpacity = "1.0";
-    inactiveOpacity = "0.8";
+    inactiveOpacity = "0.7";
     menuOpacity = "0.8";
 
     backend = "glx";
@@ -42,4 +43,6 @@
       mark-ovredir-focused = true;
     '';
   };
+  };
 }
+
