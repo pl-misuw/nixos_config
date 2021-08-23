@@ -10,18 +10,49 @@ in
     #../../modules/k8s_no_Gondek.nix
     #../../modules/docker.nix
   ];
+
   # Environment thingies
+  environment.variables = {
+    LC_ALL = "C";
+  };
+
   environment.systemPackages = with pkgs; [
     exa
     fd
     ripgrep
   ];
   
-    # List packages installed in system profile. To search, run:
+  # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.sessionVariables.TERMINAL = [ "alacritty" ];
+  environment.sessionVariables.TERMINAL = [ "termite" ];
 
   # List services that you want to enable:
+  hardware.pulseaudio.enable = true;
+  programs.dconf.enable = true;
+  # Enable pipewirer
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.supporrt32Bit = true;
+  #   pulse.enable = true;
+  #   # If you want to use JACK applications, uncomment this
+  #   #jack.enable = true;
+
+  #   # use the example session manager (no others are packaged yet so this is enabled by default,
+  #   # no need to redefine it in your config for now)
+  #   media-session.enable = true;
+  #   config.pipewire = {
+  #     "context.properties" = {
+  #     #"link.max-buffers" = 64;
+  #     "link.max-buffers" = 16; # version < 3 clients can't handle more than this
+  #     "log.level" = 2; # https://docs.pipewire.org/#Logging
+  #     #"default.clock.rate" = 48000;
+  #     #"default.clock.quantum" = 1024;
+  #     #"default.clock.min-quantum" = 32;
+  #     #"default.clock.max-quantum" = 8192;
+  #     };
+  #   };
+  # };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

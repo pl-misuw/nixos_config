@@ -22,8 +22,8 @@
     noDNDShadow = true;
 
     activeOpacity = "1.0";
-    inactiveOpacity = "0.7";
-    menuOpacity = "0.8";
+    inactiveOpacity = "1.0";
+    menuOpacity = "1.0";
 
     backend = "glx";
     vSync = true;

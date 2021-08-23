@@ -1,2 +1,4 @@
 secrets/
 wpa_supplicant.conf
+__PYCACHE__
+__pycache__

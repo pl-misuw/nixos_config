@@ -39,7 +39,7 @@ in {
       alsaSupport = true;
     };
 
-    script = "polybar -q -r top & polybar -q -r bottom &";
+    script = "polybar -q -r top &";
 
     config = {
       "global/wm" = {
@@ -68,46 +68,46 @@ in {
         font-0 = "FuraCode Nerd Font:size=16;4";
         font-1 = "FuraCode Nerd Font:style=Bold:size=16;4";
 
-        modules-left = "distro-icon dulS ddrT i3 dulT";
+        modules-left = "distro-icon dulS ddrT i3 dulT ddrS cpu dulS ddrT memory dulT ";
         modules-center = "title";
         modules-right = "durT audio ddlT durP network ddlP date";
 
         locale = "en_US.UTF-8";
       };
 
-      "bar/bottom" = {
-        bottom = true;
-        fixed-center = true;
+      # "bar/bottom" = {
+      #   bottom = true;
+      #   fixed-center = true;
 
-        width = "100%";
-        height = 25;
+      #   width = "100%";
+      #   height = 25;
 
-        offset-x = "1%";
+      #   offset-x = "1%";
 
-        background = bg;
-        foreground = fg;
+      #   background = bg;
+      #   foreground = fg;
 
-        radius-top = 0;
+      #   radius-top = 0;
 
-        tray-position = "left";
-        tray-detached = false;
-        tray-maxsize = 15;
-        tray-background = secondary;
-        tray-offset-x = -39;
-        tray-offset-y = 0;
-        tray-padding = 5;
-        tray-scale = 1;
-        padding = 0;
+      #   tray-position = "left";
+      #   tray-detached = false;
+      #   tray-maxsize = 15;
+      #   tray-background = secondary;
+      #   tray-offset-x = -39;
+      #   tray-offset-y = 0;
+      #   tray-padding = 5;
+      #   tray-scale = 1;
+      #   padding = 0;
 
-        font-0 = "FuraCode Nerd Font:size=16;4";
-        font-1 = "FuraCode Nerd Font:style=Bold:size=16;4";
+      #   font-0 = "FuraCode Nerd Font:size=16;4";
+      #   font-1 = "FuraCode Nerd Font:style=Bold:size=16;4";
 
-        modules-left = "powermenu ddlS";
+      #   modules-left = "powermenu ddlS";
 
-        modules-right = "ddrS cpu dulS ddrT memory dulT ddrP battery";
+      #   modules-right = "ddrS cpu dulS ddrT memory dulT ddrP battery";
 
-        locale = "en_US.UTF-8";
-      };
+      #   locale = "en_US.UTF-8";
+      # };
 
       "settings" = {
         throttle-output = 5;

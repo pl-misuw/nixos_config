@@ -26,16 +26,17 @@
         "XF86MonBrightnessUp" = "exec brightnessctl set 4%+";
         "${modifier}+t" = "exec termite";
         "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -modi drun -show drun";
-        "${modifier}+v" = "exec code";
-        "${modifier}+s" = "exec nix search --json | jq 'keys' | rofi -dmenu";
+        "${modifier}+Shift+v" = "exec code";
+        "${modifier}+Shift+c" = "exec ~/.config/nixpkgs_search";
+        "${modifier}+Shift+s" = "exec ${pkgs.flameshot}/bin/flameshot gui";
         "${modifier}+Shift+d" = "exec ${pkgs.rofi}/bin/rofi -show window";
-        "${modifier}+b" = "exec firefox";
+        "${modifier}+Shift+b" = "exec firefox";
         "${modifier}+Shift+x" = "exec systemctl suspend";
       };
 
       startup = [
         {
-          command = "exec xrandr --output eDP-1 --mode 2560x1440 --pos 0x720 --rotate normal --output DP-1 --primary --mode 3840x2160 --pos 2560x0 --rotate normal --output HDMI-1 --off --output DP-2 --off";
+          command = "xrandr --output eDP-1 --mode 2560x1440 --pos 710x2160 --rotate normal --output DP-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-2 --off";
           always = true;
           notification = false;
         }
@@ -50,9 +51,19 @@
           notification = false;
         }
         {
+          command = "${pkgs.tint2}/bin/tint2 ";
+          always = true;
+          notification = false;
+        }
+        {
           command = "${pkgs.feh}/bin/feh --bg-scale ~/Pictures/background.jpg";
           always = true;
           notification = false;
+        }
+        {
+          command = "${pkgs.noisetorch}/bin/noisetorch ";
+          always = true;
+          notification = true;
         }
       ];
     };

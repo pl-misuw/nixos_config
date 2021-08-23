@@ -39,11 +39,6 @@ in
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  environment.variables = {
-    LC_ALL = "C";
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -58,10 +53,32 @@ in
   #Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  #TLP make sure off
+  services.tlp.enable = false;
+
+  # Never ever go to sleep, hibernate of something like that
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+  systemd.services = {
+    tune-usb-autosuspend = {
+      description = "Disable USB autosuspend";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = { Type = "oneshot"; };
+      unitConfig.RequiresMountsFor = "/sys";
+      script = ''
+        echo -1 > /sys/module/usbcore/parameters/autosuspend
+      '';
+    };
+  };
+
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     dpi = 110;
+    layout = "pl";
 
     desktopManager = {
       xterm.enable = false;

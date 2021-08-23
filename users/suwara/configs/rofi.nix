@@ -17,137 +17,86 @@ in
       * (edited by Litarvan and Th0rgal)
       */
 
-      configuration {
-        display-drun:    "Activate";
-        display-run:     "Execute";
-        display-window:  "Window";
-        show-icons:      true;
-        sidebar-mode:    true;
-        font: "JetbrainsMono Nerd Font 12";
-      }
+        configuration {
+          display-run: " ";
+          display-drun: "  ";
+          display-window: "  ";
+          drun-display-format: "{icon} {name}";
+          font: "JetBrainsMono Nerd Font Medium 10";
+          modi: "window,run,drun,file-browser";
+          show-icons: true;
+        }
 
-      * {
-        background-color:            transparent;
-        text-color:                  #b2aea8;
-        selbg:                       #3949A3;
-        actbg:                       #262626;
-        urgbg:                       #e53935;
-        winbg:                       #B3BEFF;
+        * {
+          polar-1: #2E3440;
+          polar-2: #3B4252;
+          polar-3: #434C5E;
+          polar-4: #4C566A;
 
-        selected-normal-foreground:  @winbg;
-        normal-foreground:           @text-color;
-        selected-normal-background:  @actbg;
-        normal-background:           @background-color;
+          snow-1: #D8DEE9;
+          snow-2: #E5E9F0;
+          snow-3: #ECEFF4;
 
-        selected-urgent-foreground:  @background-color;
-        urgent-foreground:           @text-color;
-        selected-urgent-background:  @urgbg;
-        urgent-background:           @background-color;
+          frost-1: #8FBCBB;
+          frost-2: #88C0D0;
+          frost-3: #81A1C1;
+          frost-4: #5E81AC;
 
-        selected-active-foreground:  @winbg;
-        active-foreground:           @text-color;
-        selected-active-background:  @actbg;
-        active-background:           @selbg;
+          aurora-1: #BF616A;
+          aurora-2: #D08770;
+          aurora-3: #EBCB8B;
+          aurora-4: #A3BE8C;
+          aurora-5: #B48EAD;
 
-        line-margin:                 2;
-        line-padding:                2;
-        separator-style:             "none";
-        hide-scrollbar:              "true";
-        margin:                      0;
-        padding:                     0;
-      }
+          background-color: @polar-1;
+          
+          border: 0;
+          margin: 0;
+          padding: 0;
+          spacing: 0;
+        }
 
-      window {
-        transparency: "real";
-        background-color: #00000099;
-        location:  north west;
-        anchor:    north west;
-        height:    50%;
-        width:    20%;
-        orientation:  horizontal;
-        children:  [mainbox];
-        x-offset:  29px;        
-        y-offset:  57px;
-      }
+        element {
+          padding: 12;
+          orientation: vertical;
+          text-color: @frost-3;
+        }
 
-      mainbox {
-        spacing:  0.8em;
-        children: [entry, listview ];
-      }
+        element selected {
+          text-color: @aurora-3;
+        }
 
-      button { padding: 5px 2px; }
+        entry {
+          background-color: @polar-2;
+          padding: 12 0 12 3;
+          text-color: @frost-1;
+        }
 
-      button selected {
-        background-color: @active-background;
-        text-color:       @background-color;
-      }
+        inputbar {
+          children: [prompt, entry];
+        }
 
-      inputbar {
-        padding: 5px;
-        spacing: 5px;
-      }
+        listview {
+          columns: 1;
+          lines: 8;
+          scrollbar: true;
+        }
 
-      listview {
-        spacing: 0.5em;
-        dynamic: false;
-        cycle:   false;
-      }
+        mainbox {
+          children: [inputbar, listview];
+        }
 
-      element { padding: 10px; }
+        prompt {
+          background-color: @polar-2;
+          enabled: true;
+          font: "FontAwesome 12";
+          padding: 12 0 0 12;
+          text-color: @frost-1;
+        }
 
-      entry {
-        expand:         false;
-        text-color:     @normal-foreground;
-        vertical-align: 1;
-        padding:        5px;
-      }
-
-      element normal.normal {
-        background-color: @normal-background;
-        text-color:       @normal-foreground;
-      }
-
-      element normal.urgent {
-        background-color: @urgent-background;
-        text-color:       @urgent-foreground;
-      }
-
-      element normal.active {
-        background-color: @active-background;
-        text-color:       @active-foreground;
-      }
-
-      element selected.normal {
-        background-color: @selected-normal-background;
-        text-color:       @selected-normal-foreground;
-        border:           0 5px solid 0 0;
-        border-color:      @active-background;
-      }
-
-      element selected.urgent {
-        background-color: @selected-urgent-background;
-        text-color:       @selected-urgent-foreground;
-      }
-
-      element selected.active {
-        background-color: @selected-active-background;
-        text-color:       @selected-active-foreground;
-      }
-
-      element alternate.normal {
-        background-color: @normal-background;
-        text-color:       @normal-foreground;
-      }
-
-      element alternate.urgent {
-        background-color: @urgent-background;
-        text-color:       @urgent-foreground;
-      }
-
-      element alternate.active {
-        background-color: @active-background;
-        text-color:       @active-foreground;
-      }
+        window {
+          transparency: "real";
+        }
     '');
   };
   };

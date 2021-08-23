@@ -28,6 +28,7 @@ in
 
       #Programming
       rustc
+      rustup-toolchain-install-master
       rustfmt
       cargo
 
@@ -43,6 +44,8 @@ in
       dhcp
       wirelesstools
       pciutils
+      aspellDicts.en
+      aspellDicts.pl
 
       #Btyfy
       termite
@@ -50,9 +53,11 @@ in
       oh-my-zsh
       any-nix-shell
       nerdfonts
+      plank
 
       #Utilities
       firefox
+      vivaldi
       vscode
       pwgen
       openvpn
@@ -66,6 +71,13 @@ in
       vlc
       ranger
       nix-index
+      flameshot
+      obs-studio
+      geany
+      noisetorch
+      xclip
+      tabbed
+      remmina
 
       #WebCam
       gphoto2
@@ -78,8 +90,6 @@ in
       NIXOS_CONFIG = /home/suwara/_GIT/nixos_config;
       EDITOR = "vim";
     };
-
-
 
     programs = {
       command-not-found.enable = true;

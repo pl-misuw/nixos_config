@@ -1,0 +1,1 @@
+nix search --json | jq --raw-output 'keys[] as $k | "\($k), \(.[$k] | .pkgName ), \(.[$k] | .version ), \(.[$k] | .description )"' | rofi -dmenu |  cut -d'"' -f 2 | cut -d '.' -f2- | cut -d ',' -f1 | xclip -selection clipboard

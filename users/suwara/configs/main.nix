@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./dotfiles.nix
     ./alacritty.nix
     ./termite.nix
     ./compton.nix

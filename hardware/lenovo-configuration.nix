@@ -27,7 +27,22 @@
     [ { device = "/dev/disk/by-uuid/edc8a9e6-2fd6-42ed-bd23-a1aae69bb7aa"; }
     ];
 
+  # Virtualisation
+  virtualisation.docker.enable = true;
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
 }
