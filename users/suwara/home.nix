@@ -7,6 +7,8 @@ in
   imports = [
     ./configs/main.nix
   ];
+  nixpkgs.overlays = [(self: super: { discord = super.discord.overrideAttrs (_: { src = builtins.fetchTarball https://discord.com/api/download?platform=linux&format=tar.gz; });})];
+  #extraDiscordPackages = self.callPackage ./overlays/discord { };
   home-manager.users.suwara = {
 
     # Using mismatched versions is likely to cause errors and unexpected
@@ -25,6 +27,7 @@ in
       git
       bazel
       kubernetes-helm
+      tmate
 
       #Programming
       rustc
@@ -46,6 +49,8 @@ in
       pciutils
       aspellDicts.en
       aspellDicts.pl
+      bc
+      i3lock
 
       #Btyfy
       termite
@@ -63,6 +68,7 @@ in
       openvpn
       glibcLocales
       discord
+      betterdiscordctl
       signal-desktop
       slack
       arandr
@@ -78,6 +84,9 @@ in
       xclip
       tabbed
       remmina
+      zoom-us
+      obs-studio
+      bluez
 
       #WebCam
       gphoto2

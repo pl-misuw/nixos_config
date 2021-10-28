@@ -29,7 +29,7 @@ in
   # List services that you want to enable:
   hardware.pulseaudio.enable = true;
   programs.dconf.enable = true;
-  # Enable pipewirer
+  # Enable pipewire
   # services.pipewire = {
   #   enable = true;
   #   alsa.enable = true;

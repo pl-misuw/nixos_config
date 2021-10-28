@@ -32,11 +32,17 @@
         "${modifier}+Shift+d" = "exec ${pkgs.rofi}/bin/rofi -show window";
         "${modifier}+Shift+b" = "exec firefox";
         "${modifier}+Shift+x" = "exec systemctl suspend";
+        "${modifier}+l" = "exec ${pkgs.i3lock}/bin/i3lock -i ~/Pictures/lockscreen.png";
       };
 
       startup = [
         {
-          command = "xrandr --output eDP-1 --mode 2560x1440 --pos 710x2160 --rotate normal --output DP-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-2 --off";
+          command = "xrandr --output eDP-1 --mode 1920x1080 --pos 320x1440 --rotate normal --output DP-1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-2 --off";
+          always = true;
+          notification = false;
+        }
+        {
+          command = "exec nm-applet ";
           always = true;
           notification = false;
         }
